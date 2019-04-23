@@ -23,7 +23,45 @@ const static NSString *cellIdentifier = @"algorithmCell";
     self.tableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    NSArray *unsortArray = @[@3,@2,@1,@5,@8,@23,@45,@99,@12,@4,@100];
+    
+    NSArray *sortedArray = [self bubble:unsortArray];
+    
+    for (NSNumber *item in sortedArray) {
+        NSLog(@"ss=====%@",item);
+    }
+    
 }
+
+- (NSArray *)bubble:(NSArray *)unsortArray
+{
+    NSMutableArray *sorted = unsortArray.mutableCopy;
+    
+    NSUInteger count = sorted.count;
+    
+    for (NSUInteger i = 0; i< count; i++) {
+        
+        bool flag = true;
+        
+        for (NSUInteger j = 0; j< count - i - 1; j++) {
+            
+            if ([sorted[j] intValue] > [sorted[j+1] intValue]) {
+                NSNumber *temp = sorted[j+1];
+                sorted[j+1] = sorted[j];
+                sorted[j] = temp;
+                flag = false;
+            }
+        }
+        if (flag) {
+            break ;
+        }
+        
+    }
+    
+    return sorted.copy;
+}
+
 
 - (UITableView *)tableView
 {

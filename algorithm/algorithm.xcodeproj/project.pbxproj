@@ -15,6 +15,7 @@
 		0AD602AA226F4D3A00F53758 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD602A9226F4D3A00F53758 /* main.m */; };
 		0AD602B4226F4D3B00F53758 /* algorithmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD602B3226F4D3B00F53758 /* algorithmTests.m */; };
 		0AD602BF226F4D3B00F53758 /* algorithmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD602BE226F4D3B00F53758 /* algorithmUITests.m */; };
+		0AD602CF226F554100F53758 /* CHSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD602CE226F554100F53758 /* CHSortViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		0AD602BA226F4D3B00F53758 /* algorithmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = algorithmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD602BE226F4D3B00F53758 /* algorithmUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = algorithmUITests.m; sourceTree = "<group>"; };
 		0AD602C0226F4D3B00F53758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AD602CD226F554100F53758 /* CHSortViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHSortViewController.h; sourceTree = "<group>"; };
+		0AD602CE226F554100F53758 /* CHSortViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHSortViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		0AD60299226F4D3800F53758 /* algorithm */ = {
 			isa = PBXGroup;
 			children = (
+				0AD602CC226F552100F53758 /* Sort */,
 				0AD6029A226F4D3800F53758 /* AppDelegate.h */,
 				0AD6029B226F4D3800F53758 /* AppDelegate.m */,
 				0AD6029D226F4D3800F53758 /* ViewController.h */,
@@ -130,6 +134,15 @@
 				0AD602C0226F4D3B00F53758 /* Info.plist */,
 			);
 			path = algorithmUITests;
+			sourceTree = "<group>";
+		};
+		0AD602CC226F552100F53758 /* Sort */ = {
+			isa = PBXGroup;
+			children = (
+				0AD602CD226F554100F53758 /* CHSortViewController.h */,
+				0AD602CE226F554100F53758 /* CHSortViewController.m */,
+			);
+			path = Sort;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +278,7 @@
 				0AD6029F226F4D3800F53758 /* ViewController.m in Sources */,
 				0AD602AA226F4D3A00F53758 /* main.m in Sources */,
 				0AD6029C226F4D3800F53758 /* AppDelegate.m in Sources */,
+				0AD602CF226F554100F53758 /* CHSortViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
