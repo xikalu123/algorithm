@@ -27,7 +27,7 @@ const static NSString *cellIdentifier = @"algorithmCell";
     NSArray *unsortArray = @[@3,@2,@1,@5,@8,@23,@45,@99,@12,@4,@100];
     
     NSArray *sortedArray = [self bubble:unsortArray];
-    
+
     for (NSNumber *item in sortedArray) {
         NSLog(@"ss=====%@",item);
     }
