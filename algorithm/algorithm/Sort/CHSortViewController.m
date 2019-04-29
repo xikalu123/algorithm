@@ -18,6 +18,13 @@
 
 @property (nonatomic, strong) UIButton *bubbleBtn;
 @property (nonatomic, strong) UIButton *selectBtn;
+@property (nonatomic, strong) UIButton *insertBtn;
+
+@property (nonatomic, strong) UIButton *shellBtn;
+@property (nonatomic, strong) UIButton *heapBtn;
+@property (nonatomic, strong) UIButton *quickBtn;
+
+@property (nonatomic, strong) UIButton *c_qsortBtn;
 
 @end
 
@@ -32,6 +39,11 @@
     [self.view addSubview:self.sortedLabel];
     [self.view addSubview:self.bubbleBtn];
     [self.view addSubview:self.selectBtn];
+    [self.view addSubview:self.insertBtn];
+    [self.view addSubview:self.shellBtn];
+    [self.view addSubview:self.heapBtn];
+    [self.view addSubview:self.quickBtn];
+    [self.view addSubview:self.c_qsortBtn];
     
      @weakify(self);
     [RACObserve(self, sortedArray) subscribeNext:^(id x) {
@@ -149,6 +161,135 @@
     }
     self.sortedArray = sorted;
 }
+
+#pragma mark - 插入排序
+
+- (UIButton *)insertBtn
+{
+    if (!_insertBtn) {
+        _insertBtn = [self createBtnWithTitle:@"插入排序" frame:CGRectMake(260, 350, 80, 60) sel:@selector(insertSort)];
+    }
+    return _insertBtn;
+}
+
+- (void)insertSort
+{
+    NSMutableArray *sorted = _unsortArray.mutableCopy;
+    
+    NSUInteger count = sorted.count;
+    
+    for (NSUInteger i = 1; i< count; i++) {
+        
+        NSNumber *temp = sorted[i];
+        
+        NSUInteger j = i;
+        while (j > 0 && [temp intValue] < [sorted[j - 1] intValue]) {
+            sorted[j] = sorted[j - 1];
+            j--;
+        }
+        
+        if (j != i) {
+            sorted[j] = temp;
+        }
+        
+    }
+    self.sortedArray = sorted;
+}
+#pragma mark - 希尔排序
+
+- (UIButton *)shellBtn
+{
+    if (!_shellBtn) {
+        _shellBtn = [self createBtnWithTitle:@"希尔排序" frame:CGRectMake(40, 430, 80, 60) sel:@selector(shellSort)];
+    }
+    return _shellBtn;
+}
+
+- (void)shellSort
+{
+    NSMutableArray *sorted = _unsortArray.mutableCopy;
+    
+    NSUInteger count = sorted.count;
+    
+    NSUInteger gap = 1;
+    while (gap < count) {
+        gap = gap * 3  + 1;
+    }
+    
+    while (gap > 0) {
+        [self insertSortWithArray:sorted gap:gap];
+        gap = gap/3;
+    }
+    self.sortedArray = sorted;
+}
+
+- (void)insertSortWithArray:(NSMutableArray *)sorted
+                        gap:(NSUInteger )gap
+{
+    NSUInteger count = sorted.count;
+    for (NSUInteger i = gap; i< count; i+= gap) {
+        
+        NSNumber *temp = sorted[i];
+        
+        NSUInteger j = i;
+        while (j > 0 && [temp intValue] < [sorted[j - gap] intValue]) {
+            sorted[j] = sorted[j - gap];
+            j = j - gap;
+        }
+        
+        if (j != i) {
+            sorted[j] = temp;
+        }
+        
+    }
+}
+
+#pragma mark - 堆排序
+
+- (UIButton *)heapBtn
+{
+    if (!_heapBtn) {
+        _heapBtn = [self createBtnWithTitle:@"堆排序" frame:CGRectMake(150, 430, 80, 60) sel:@selector(heapSort)];
+    }
+    return _heapBtn;
+}
+
+- (void)heapSort
+{
+    
+}
+
+#pragma mark - 快速排序
+
+- (UIButton *)quickBtn
+{
+    if (!_quickBtn) {
+        _quickBtn = [self createBtnWithTitle:@"快速排序" frame:CGRectMake(260, 430, 80, 60) sel:@selector(quickSort)];
+    }
+    return _quickBtn;
+}
+
+- (void)quickSort
+{
+    
+}
+
+
+#pragma mark - C++ 排序实现
+
+- (UIButton *)c_qsortBtn
+{
+    if (!_c_qsortBtn) {
+        _c_qsortBtn = [self createBtnWithTitle:@"C++排序" frame:CGRectMake(40, 510, 80, 60) sel:@selector(c_qsort)];
+    }
+    return _c_qsortBtn;
+}
+
+- (void)c_qsort
+{
+    
+}
+
 
 
 - (UIButton *)createBtnWithTitle:(NSString *)title
