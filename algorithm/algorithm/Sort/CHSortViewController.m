@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *sortedArray;
 
 @property (nonatomic, strong) UIButton *bubbleBtn;
+@property (nonatomic, strong) UIButton *selectBtn;
 
 @end
 
@@ -24,23 +25,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor blackColor];
     _unsortArray = @[@3,@2,@1,@5,@8,@23,@45,@99,@12,@4,@100,@66,@3,@89,@103];
     _sortedArray = [NSMutableArray new];
     [self.view addSubview:self.unsortLabel];
     [self.view addSubview:self.sortedLabel];
     [self.view addSubview:self.bubbleBtn];
+    [self.view addSubview:self.selectBtn];
+    
      @weakify(self);
     [RACObserve(self, sortedArray) subscribeNext:^(id x) {
         @strongify(self);
-        __block NSMutableString *result = [NSMutableString new];
-        [self.sortedArray.rac_sequence.signal subscribeNext:^(id x) {
-            [result appendString:[NSString stringWithFormat:@"%@  ",x]];
-        } completed:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.sortedLabel.text = result;
-            });
+        NSMutableString *result = [NSMutableString new];
+        result = [self.sortedArray.rac_sequence foldLeftWithStart:@"" reduce:^id(id accumulator, id value) {
+            return  [accumulator stringByAppendingString:[NSString stringWithFormat:@"%@ ",value]];
         }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.sortedLabel.text = result;
+        });
     }];
+    
+    self.unsortLabel.text = [_unsortArray.rac_sequence foldLeftWithStart:@"" reduce:^id(id accumulator, id value) {
+        return  [accumulator stringByAppendingString:[NSString stringWithFormat:@"%@ ",value]];
+    }];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -50,6 +58,7 @@
         _unsortLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 100)];
         _unsortLabel.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
         _unsortLabel.textColor = [UIColor blackColor];
+        _unsortLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _unsortLabel;
 }
@@ -65,18 +74,12 @@
     return _sortedLabel;
 }
 
+#pragma mark - 冒泡排序
+
 - (UIButton *)bubbleBtn
 {
     if (!_bubbleBtn) {
-        _bubbleBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 350, 80, 60)];
-        _bubbleBtn.backgroundColor = [UIColor whiteColor];
-        [_bubbleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_bubbleBtn setTitle:@"冒泡排序" forState:UIControlStateNormal];
-        @weakify(self);
-        [[_bubbleBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            @strongify(self);
-            [self bubbleSort];
-        }];
+        _bubbleBtn = [self createBtnWithTitle:@"冒泡排序" frame:CGRectMake(40, 350, 80, 60) sel:@selector(bubbleSort)];
     }
     return _bubbleBtn;
 }
@@ -88,11 +91,11 @@
     
     NSUInteger count = sorted.count;
     
-    for (NSUInteger i = 0; i< count; i++) {
+    for (NSUInteger i = 1; i< count; i++) {
         
         bool flag = true;
         
-        for (NSUInteger j = 0; j< count - i - 1; j++) {
+        for (NSUInteger j = 0; j< count - i; j++) {
             
             if ([sorted[j] intValue] > [sorted[j+1] intValue]) {
                 NSNumber *temp = sorted[j+1];
@@ -108,6 +111,60 @@
     }
     self.sortedArray = sorted;
 
+}
+
+#pragma mark - 选择排序
+
+- (UIButton *)selectBtn
+{
+    if (!_selectBtn) {
+        _selectBtn = [self createBtnWithTitle:@"选择排序" frame:CGRectMake(150, 350, 80, 60) sel:@selector(selectSort)];
+    }
+    return _selectBtn;
+}
+
+- (void)selectSort
+{
+    NSMutableArray *sorted = _unsortArray.mutableCopy;
+    
+    NSUInteger count = sorted.count;
+    
+    for (NSUInteger i = 0; i< count; i++) {
+        
+        NSUInteger min = i;
+        
+        for (NSUInteger j = i + 1; j< count; j++) {
+            
+            if ([sorted[j] intValue] < [sorted[min] intValue]) {
+                min = j;
+            }
+        }
+        
+        if (min != i) {
+            NSNumber *temp = sorted[i];
+            sorted[i] = sorted[min];
+            sorted[min] = temp;
+        }
+        
+    }
+    self.sortedArray = sorted;
+}
+
+
+- (UIButton *)createBtnWithTitle:(NSString *)title
+                           frame:(CGRect )frame
+                             sel:(SEL)aSel
+{
+    _bubbleBtn = [[UIButton alloc] initWithFrame:frame];
+    _bubbleBtn.backgroundColor = [UIColor whiteColor];
+    [_bubbleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_bubbleBtn setTitle:title forState:UIControlStateNormal];
+    @weakify(self);
+    [[_bubbleBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self);
+        [self performSelector:aSel];
+    }];
+    return _bubbleBtn;
 }
 
 
