@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ACED5E12289463F00DF9D2B /* LeetCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACED5E02289463F00DF9D2B /* LeetCodeViewController.m */; };
+		0ACED5E4228946C100DF9D2B /* LeetCodeSolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ACED5E2228946C100DF9D2B /* LeetCodeSolution.cpp */; };
 		0AD6029C226F4D3800F53758 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6029B226F4D3800F53758 /* AppDelegate.m */; };
 		0AD6029F226F4D3800F53758 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6029E226F4D3800F53758 /* ViewController.m */; };
 		0AD602A4226F4D3A00F53758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD602A3226F4D3A00F53758 /* Assets.xcassets */; };
@@ -39,6 +41,10 @@
 /* Begin PBXFileReference section */
 		008B57B63F074BE97347F600 /* Pods-algorithmUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-algorithmUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-algorithmUITests/Pods-algorithmUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0A2D1108227087B400EE70B8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		0ACED5DF2289463F00DF9D2B /* LeetCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeetCodeViewController.h; sourceTree = "<group>"; };
+		0ACED5E02289463F00DF9D2B /* LeetCodeViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = LeetCodeViewController.m; sourceTree = "<group>"; };
+		0ACED5E2228946C100DF9D2B /* LeetCodeSolution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LeetCodeSolution.cpp; sourceTree = "<group>"; };
+		0ACED5E3228946C100DF9D2B /* LeetCodeSolution.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LeetCodeSolution.hpp; sourceTree = "<group>"; };
 		0AD60297226F4D3800F53758 /* algorithm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = algorithm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD6029A226F4D3800F53758 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0AD6029B226F4D3800F53758 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -154,6 +160,10 @@
 			children = (
 				0AD602CD226F554100F53758 /* CHSortViewController.h */,
 				0AD602CE226F554100F53758 /* CHSortViewController.m */,
+				0ACED5DF2289463F00DF9D2B /* LeetCodeViewController.h */,
+				0ACED5E02289463F00DF9D2B /* LeetCodeViewController.m */,
+				0ACED5E2228946C100DF9D2B /* LeetCodeSolution.cpp */,
+				0ACED5E3228946C100DF9D2B /* LeetCodeSolution.hpp */,
 			);
 			path = Sort;
 			sourceTree = "<group>";
@@ -466,9 +476,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD6029F226F4D3800F53758 /* ViewController.m in Sources */,
+				0ACED5E12289463F00DF9D2B /* LeetCodeViewController.m in Sources */,
 				0AD602AA226F4D3A00F53758 /* main.m in Sources */,
 				0AD6029C226F4D3800F53758 /* AppDelegate.m in Sources */,
 				0AD602CF226F554100F53758 /* CHSortViewController.m in Sources */,
+				0ACED5E4228946C100DF9D2B /* LeetCodeSolution.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +636,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LQNCVGRWP6;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/algorithm/PrefixHeader.pch";
 				INFOPLIST_FILE = algorithm/Info.plist;
@@ -645,6 +658,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LQNCVGRWP6;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/algorithm/PrefixHeader.pch";
 				INFOPLIST_FILE = algorithm/Info.plist;

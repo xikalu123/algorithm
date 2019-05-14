@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "CHSortViewController.h"
+#import "LeetCodeViewController.h"
 
 @interface algorithmCellModel : NSObject
 
@@ -28,7 +29,7 @@
 
 @end
 
-const static NSString *cellIdentifier = @"algorithmCell";
+static const NSString *cellIdentifier = @"algorithmCell";
 
 @implementation ViewController
 
@@ -69,11 +70,11 @@ const static NSString *cellIdentifier = @"algorithmCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"algorithmCell"];
     algorithmCellModel *cellModel = _cellArray[indexPath.row];
     if(!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"algorithmCell"];
         cell.textLabel.text = cellModel.title;
     }
     return cell;
@@ -97,7 +98,16 @@ const static NSString *cellIdentifier = @"algorithmCell";
         [self.navigationController pushViewController:sortVC animated:YES];
     };
     
+    algorithmCellModel *leetCodeModel = [algorithmCellModel new];
+    leetCodeModel.title = @"LeetCode Solution";
+    leetCodeModel.clickBlock = ^{
+        LeetCodeViewController *leetCodeVC = [[LeetCodeViewController alloc] init];
+        [self.navigationController pushViewController:leetCodeVC animated:YES];
+    };
+    
     [dataArray addObject:sortModel];
+    
+    [dataArray addObject:leetCodeModel];
     
     _cellArray = dataArray.copy;
 }
