@@ -13,11 +13,19 @@
 #include <vector>
 #include <iostream>
 #include <unordered_map>
+#include <string>
 
 
 using std::vector;
 using std::unordered_map;
+using std::string;
 
 vector<int> twoSum(vector<int>&nums,int target);
+
+string InterToRoman(int num);
+
+string removeOuter(string s);
+
+string toLowerCase(string str);
 
 #endif /* LeetCodeSolution_hpp */

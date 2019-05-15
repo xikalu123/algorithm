@@ -22,10 +22,19 @@
     vector<int> input{2,3,4,5,6,1,9};
     vector<int> result = twoSum(input, 11);
     
-    for (int i = 0; i<result.size(); i++) {
-         std::cout<<result[i]<<"  "<<std::endl;
-    }
+//    for (int i = 0; i<result.size(); i++) {
+//         std::cout<<result[i]<<"  "<<std::endl;
+//    }
     
+//    string roamn = InterToRoman(17);
+    
+    string inputStr = "AdjsdhKJDAHSKDNJAdd";
+    
+//    string ss = removeOuter(inputStr);
+    
+    string ss = toLowerCase(inputStr);
+    
+    std::cout<<ss<<std::endl;
 }
 
 /*
